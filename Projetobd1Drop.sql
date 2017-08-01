@@ -1,0 +1,13 @@
+DROP TABLE prestados;
+DROP TABLE vende;
+DROP TABLE avalia;
+DROP TABLE hospeda;
+DROP TABLE reserva;
+DROP TABLE nota_fiscal;
+DROP TABLE produto;
+DROP TABLE servico;
+DROP TABLE telefones;
+DROP TABLE funcionario;
+DROP TABLE dependente;
+DROP TABLE quarto;
+DROP TABLE cliente;
