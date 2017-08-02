@@ -1,4 +1,3 @@
-/*OBS:Pesquisei sobre auto-incremento e no Oracle não possui um tipo de dado desse, tem que fazer a partir de SEQUENCE*/
 
 /* Não sei é pra colocar NOT NULL em alguns atributos*/
 CREATE TABLE cliente(
@@ -30,23 +29,23 @@ CREATE TABLE dependente(
     PRIMARY KEY(cpf,cpfCliente),
     FOREIGN KEY (cpfCliente) REFERENCES cliente(cpf)
  );
- /*Não sei se os parametros do NUMERIC DEVEM SER 10 E 2 */
+
 CREATE TABLE funcionario(
     nome VARCHAR(50) NOT NULL,
     cpf CHAR(11),
-    salario NUMERIC(10,2),
+    salario NUMERIC(10,4),
     dataNasc DATE NOT NULL,
     funcao VARCHAR(20),
     CHECK(salario>=0),
     PRIMARY KEY(cpf)
 );
-  /*Duvida no NUMERIC e no NOT NULL */
+
 CREATE TABLE quarto(
     id INTEGER,
     numero INTEGER NOT NULL,
     tipo VARCHAR(20) NOT NULL,
     vista VARCHAR(20),
-    diaria NUMERIC(10,2),
+    diaria NUMERIC(10,4),
     equipamentos VARCHAR(20),
     CHECK (diaria>=0),
     PRIMARY KEY (id)
@@ -58,7 +57,7 @@ CREATE TABLE nota_fiscal(
     id_nota INTEGER,
     dt_in DATE NOT NULL,
     dt_out DATE NOT NULL,
-    valor NUMERIC(5,2),
+    valor NUMERIC(10,4),
     cpfCliente CHAR(11),
     idQuarto INTEGER,
     CHECK(valor>=0),
@@ -76,7 +75,7 @@ CREATE TABLE reserva(
     FOREIGN KEY (cpf) REFERENCES cliente(cpf),
     FOREIGN KEY (id) REFERENCES quarto(id)
 );
-/*Cuidado com a ordem do DATE a dara é MM/DD/AAAA*/
+
 CREATE TABLE hospeda(
     dt_in DATE NOT NULL,
     dt_out DATE NOT NULL,
@@ -86,19 +85,19 @@ CREATE TABLE hospeda(
     FOREIGN KEY (cpf) REFERENCES cliente(cpf),
     FOREIGN KEY (id) REFERENCES quarto(id)
 );
- /*Duvida no NUMERIC, não sei se os parametros são 5 e 2*/
+
 CREATE TABLE servico(
     id INTEGER,
-    valor NUMERIC(5,2),
+    valor NUMERIC(10,4),
     tipo VARCHAR(20) NOT NULL,
     PRIMARY KEY(id)
 );
- /*Duvida no NUMERIC, não sei se os parametros são 5 e 2*/
+
 CREATE TABLE produto(
     id integer,
     nome VARCHAR(50) NOT NULL,
     descricao VARCHAR(100),
-    valor NUMERIC(5,2),
+    valor NUMERIC(10,4),
     idServico INTEGER,
     CHECK (valor>=0),
     PRIMARY KEY (id),
@@ -136,7 +135,3 @@ CREATE TABLE prestados(
     FOREIGN KEY (id) REFERENCES servico(id)
 
 );
-
-
-
-
